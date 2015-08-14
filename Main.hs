@@ -1,5 +1,7 @@
 import System.Environment (getArgs)
 
+import Problem001 as P1
+import Problem002 as P2
 import Problem003 as P3
 import Problem004 as P4
 import Problem005 as P5
@@ -20,6 +22,8 @@ main = do
 usage = "cabal run 6"
 
 runSolution :: Int -> String
+runSolution 1 = show P1.answer
+runSolution 2 = show P2.answer
 runSolution 3 = show P3.answer
 runSolution 4 = show P4.answer
 runSolution 5 = show P5.answer
