@@ -1,4 +1,4 @@
-module Problem13 (answer) where
+module Problem013 (answer) where
 
 answer :: Integer
 answer = read . (take 10) . show . sum $ numbers

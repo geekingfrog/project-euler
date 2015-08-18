@@ -1,4 +1,4 @@
-module Problem12 (answer) where
+module Problem012 (answer) where
 
 import Primes (factorize)
 
