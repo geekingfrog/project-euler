@@ -11,6 +11,7 @@ import Problem008 as P8
 import Problem009 as P9
 import Problem010 as P10
 import Problem011 as P11
+import Problem012 as P12
 
 main :: IO ()
 main = do
@@ -33,4 +34,5 @@ runSolution 8 = show P8.answer
 runSolution 9 = show P9.answer
 runSolution 10 = show P10.answer
 runSolution 11 = show P11.answer
+runSolution 12 = show P12.answer
 runSolution _ = undefined
