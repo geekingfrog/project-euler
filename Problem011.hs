@@ -1,17 +1,32 @@
 module Problem011 (answer) where
 
+import qualified Data.Sequence as S
+import qualified Data.Foldable as F
+
 answer :: Int
-answer = undefined
+answer = maximum $ fmap maximum [horizontalProducts, verticalProducts, diagonalProducts1, diagonalProducts2]
 
-horizontalSlices = [take 4 $ drop i grid | i <- [0..length grid - 4]]
+horizontalWindows = [map (+i) [0..3] | i <- [0..S.length grid - 4]]
+horizontalSlices = (fmap . fmap) (S.index grid) horizontalWindows
+horizontalProducts = fmap (foldl (*) 1) horizontalSlices
 
-verticalSlices = [drop i grid | i <- [0..length grid - side*4]]
+verticalWindows = [map (\x -> i + x*side) [0..3] | i <- [0..S.length grid - 3*side - 1]]
+verticalSlices = (fmap . fmap) (S.index grid) verticalWindows
+verticalProducts = fmap (foldl (*) 1) verticalSlices
+
+diagonalWindows1 = [map (\x -> i + x*side+x) [0..3] | i <- [0..S.length grid - 3*side - 4]]
+diagonalSlices1 = (fmap . fmap) (S.index grid) diagonalWindows1
+diagonalProducts1 = fmap (foldl (*) 1) diagonalSlices1
+
+diagonalWindows2 = [map (\x -> i + x*side - x) [0..3] | i <- [3..S.length grid - 3*side - 1]]
+diagonalSlices2 = (fmap . fmap) (S.index grid) diagonalWindows2
+diagonalProducts2 = fmap (foldl (*) 1) diagonalSlices2
 
 side :: Int
-side = floor . sqrt . fromIntegral $ length grid
+side = floor . sqrt . fromIntegral $ S.length grid
 
-grid :: [Int]
-grid = map read (words "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08\
+grid :: S.Seq Int
+grid = S.fromList $ map read (words "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08\
 \ 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00\
 \ 81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65\
 \ 52 70 95 23 04 60 11 42 69 24 68 56 01 32 56 71 37 02 36 91\
