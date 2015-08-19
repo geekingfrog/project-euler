@@ -1,8 +1,5 @@
 module Problem014 (answer) where
 
--- there is probably some easy improvements to make here,
--- it took a while (~3 min)
-
 import Data.List
 import Data.Function (on)
 

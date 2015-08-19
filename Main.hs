@@ -23,6 +23,7 @@ main = do
     [x] -> putStrLn $ runSolution $ read x
     _ -> print usage
 
+usage :: String
 usage = "cabal run 6"
 
 runSolution :: Int -> String

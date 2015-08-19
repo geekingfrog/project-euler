@@ -17,8 +17,8 @@ firstPrimeDivisor :: Integral a => [a] -> a -> Maybe a
 firstPrimeDivisor primes x = safeHead (filter (\p -> x `mod` p == 0) $ takeWhile (<= x) primes)
 
 safeHead :: [a] -> Maybe a
-safeHead []     = Nothing
-safeHead (x:xs) = Just x
+safeHead []    = Nothing
+safeHead (x:_) = Just x
 
 -- For the algorithm, see
 -- http://www.cs.hmc.edu/~oneill/papers/Sieve-JFP.pdf
@@ -48,7 +48,7 @@ sieve (x:xs) = x : sieve' xs (insertPrime x xs PQ.empty)
   where
     insertPrime :: Int -> [Int] -> IteratorTable -> IteratorTable
     insertPrime p xs table = insertComposite (p*p) (map (*p) xs) table
-    sieve' [] table = []
+    sieve' [] _ = []
     sieve' (x:xs) table
       | nextComposite <= x = sieve' xs (adjust table)
       | otherwise          = x : sieve' xs (insertPrime x xs table)

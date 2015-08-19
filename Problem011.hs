@@ -1,7 +1,6 @@
 module Problem011 (answer) where
 
 import qualified Data.Sequence as S
-import qualified Data.Foldable as F
 
 answer :: Int
 answer = maximum $ fmap maximum [horizontalProducts, verticalProducts, diagonalProducts1, diagonalProducts2]
