@@ -17,33 +17,35 @@ import Problem014 as P14
 import Problem015 as P15
 import Problem016 as P16
 import Problem017 as P17
+import Problem018 as P18
 
 main :: IO ()
 main = do
   args <- getArgs
   case args of
-    [x] -> putStrLn $ runSolution $ read x
+    [x] -> (runSolution $ read x) >>= putStrLn
     _ -> print usage
 
 usage :: String
 usage = "cabal run 6"
 
-runSolution :: Int -> String
-runSolution 1 = show P1.answer
-runSolution 2 = show P2.answer
-runSolution 3 = show P3.answer
-runSolution 4 = show P4.answer
-runSolution 5 = show P5.answer
-runSolution 6 = show P6.answer
-runSolution 7 = show P7.answer
-runSolution 8 = show P8.answer
-runSolution 9 = show P9.answer
-runSolution 10 = show P10.answer
-runSolution 11 = show P11.answer
-runSolution 12 = show P12.answer
-runSolution 13 = show P13.answer
-runSolution 14 = show P14.answer
-runSolution 15 = show P15.answer
-runSolution 16 = show P16.answer
-runSolution 17 = show P17.answer
+runSolution :: Int -> IO String
+runSolution 1 = return $ show P1.answer
+runSolution 2 = return $ show P2.answer
+runSolution 3 = return $ show P3.answer
+runSolution 4 = return $ show P4.answer
+runSolution 5 = return $ show P5.answer
+runSolution 6 = return $ show P6.answer
+runSolution 7 = return $ show P7.answer
+runSolution 8 = return $ show P8.answer
+runSolution 9 = return $ show P9.answer
+runSolution 10 = return $ show P10.answer
+runSolution 11 = return $ show P11.answer
+runSolution 12 = return $ show P12.answer
+runSolution 13 = return $ show P13.answer
+runSolution 14 = return $ show P14.answer
+runSolution 15 = return $ show P15.answer
+runSolution 16 = return $ show P16.answer
+runSolution 17 = return $ show P17.answer
+runSolution 18 = return $ show P18.answer
 runSolution _ = undefined
