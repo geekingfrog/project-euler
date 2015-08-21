@@ -1,4 +1,4 @@
-module Problem018 (answer) where
+module Problem018 (answer, shortestPath, convert) where
 
 import Data.Array
 
@@ -6,10 +6,10 @@ import Data.Array
 -- for how to use lazyness with dynamic programming
 
 answer :: Int
-answer = shortestPath triangle 1 1
+answer = shortestPath 1 1 triangle
 
-shortestPath :: [[Int]] -> Int -> Int -> Int
-shortestPath costs i j = path i j
+shortestPath :: Int -> Int -> [[Int]] -> Int
+shortestPath i j costs = path i j
   where
     costs' = convert costs
     (n, _) = (snd . bounds) costs'
