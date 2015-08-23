@@ -1,4 +1,4 @@
-module Primes (primes, factorize, factors) where
+module Primes (primes, factorize, properDivisors) where
 
 import Data.List (unfoldr, subsequences, nub)
 import Data.PSQueue as PQ
@@ -16,6 +16,9 @@ factorize n = factorize' primes n
 -- list of all factors for a given number (not sorted)
 factors :: Int -> [Int]
 factors = nub . (map product) . subsequences . factorize
+
+properDivisors :: Int -> [Int]
+properDivisors = init . factors
 
 firstPrimeDivisor :: Integral a => [a] -> a -> Maybe a
 firstPrimeDivisor primes x = safeHead (filter (\p -> x `mod` p == 0) $ takeWhile (<= x) primes)

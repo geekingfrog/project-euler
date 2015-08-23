@@ -1,6 +1,6 @@
 module Problem021 (answer) where
 
-import Primes (factors)
+import Primes (properDivisors)
 
 answer :: Int
 answer = sum [i | i <- [2..10000], isAmicable i]
@@ -11,4 +11,4 @@ isAmicable n = let dn = d n
 
 -- sum of proper divisor
 d :: Int -> Int
-d n = (sum $ factors n) - n
+d n = sum $ properDivisors n
