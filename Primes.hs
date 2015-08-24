@@ -1,4 +1,4 @@
-module Primes (primes, factorize, properDivisors) where
+module Primes (primes, factorize, properDivisors, isPrime) where
 
 import Data.List (unfoldr, subsequences, nub)
 import Data.PSQueue as PQ
@@ -22,6 +22,12 @@ properDivisors = init . factors
 
 firstPrimeDivisor :: Integral a => [a] -> a -> Maybe a
 firstPrimeDivisor primes x = safeHead (filter (\p -> x `mod` p == 0) $ takeWhile (<= x) primes)
+
+isPrime :: Int -> Bool
+isPrime n = all (\p -> (n `mod` p) /= 0) prevPrimes
+  where
+    prevPrimes = takeWhile (\x -> x*x <= n) primes
+
 
 safeHead :: [a] -> Maybe a
 safeHead []    = Nothing
