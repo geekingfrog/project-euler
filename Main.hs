@@ -31,6 +31,7 @@ import Problem028 as P28
 import Problem029 as P29
 import Problem030 as P30
 import Problem031 as P31
+import Problem032 as P32
 import Problem067 as P67
 
 main :: IO ()
@@ -75,5 +76,6 @@ runSolution 28 = return $ show P28.answer
 runSolution 29 = return $ show P29.answer
 runSolution 30 = return $ show P30.answer
 runSolution 31 = return $ show P31.answer
+runSolution 32 = return $ show P32.answer
 runSolution 67 = P67.answer >>= (return . show)
 runSolution _ = undefined
