@@ -24,6 +24,7 @@ firstPrimeDivisor :: Integral a => [a] -> a -> Maybe a
 firstPrimeDivisor primes x = safeHead (filter (\p -> x `mod` p == 0) $ takeWhile (<= x) primes)
 
 isPrime :: Int -> Bool
+isPrime 1 = False
 isPrime n = all (\p -> (n `mod` p) /= 0) prevPrimes
   where
     prevPrimes = takeWhile (\x -> x*x <= n) primes
