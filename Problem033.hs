@@ -1,7 +1,7 @@
 module Problem033 (answer) where
 
 answer :: Int
-answer = finalDenum `div` (gcd finalDenum finalNum)
+answer = finalDenum `div` gcd finalDenum finalNum
   where
     (nums, denums) = unzip [(i, j) | j <- [2..99], i <- [1..j-1], isCurious i j]
     finalNum = product nums

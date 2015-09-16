@@ -7,19 +7,19 @@ answer = maximum $ fmap maximum [horizontalProducts, verticalProducts, diagonalP
 
 horizontalWindows = [map (+i) [0..3] | i <- [0..S.length grid - 4]]
 horizontalSlices = (fmap . fmap) (S.index grid) horizontalWindows
-horizontalProducts = fmap (foldl (*) 1) horizontalSlices
+horizontalProducts = fmap product horizontalSlices
 
 verticalWindows = [map (\x -> i + x*side) [0..3] | i <- [0..S.length grid - 3*side - 1]]
 verticalSlices = (fmap . fmap) (S.index grid) verticalWindows
-verticalProducts = fmap (foldl (*) 1) verticalSlices
+verticalProducts = fmap product verticalSlices
 
 diagonalWindows1 = [map (\x -> i + x*side+x) [0..3] | i <- [0..S.length grid - 3*side - 4]]
 diagonalSlices1 = (fmap . fmap) (S.index grid) diagonalWindows1
-diagonalProducts1 = fmap (foldl (*) 1) diagonalSlices1
+diagonalProducts1 = fmap product diagonalSlices1
 
 diagonalWindows2 = [map (\x -> i + x*side - x) [0..3] | i <- [3..S.length grid - 3*side - 1]]
 diagonalSlices2 = (fmap . fmap) (S.index grid) diagonalWindows2
-diagonalProducts2 = fmap (foldl (*) 1) diagonalSlices2
+diagonalProducts2 = fmap product diagonalSlices2
 
 side :: Int
 side = floor . sqrt . fromIntegral $ S.length grid

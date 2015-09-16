@@ -1,5 +1,7 @@
 import System.Environment (getArgs)
 
+import Control.Monad (liftM)
+
 import Problem001 as P1
 import Problem002 as P2
 import Problem003 as P3
@@ -44,7 +46,7 @@ main :: IO ()
 main = do
   args <- getArgs
   case args of
-    [x] -> (runSolution $ read x) >>= putStrLn
+    [x] -> runSolution (read x) >>= putStrLn
     _ -> print usage
 
 usage :: String
@@ -72,7 +74,7 @@ runSolution 18 = return $ show P18.answer
 runSolution 19 = return $ show P19.answer
 runSolution 20 = return $ show P20.answer
 runSolution 21 = return $ show P21.answer
-runSolution 22 = P22.answer >>= (return . show)
+runSolution 22 = liftM show P22.answer
 runSolution 23 = return $ show P23.answer
 runSolution 24 = return $ show P24.answer
 runSolution 25 = return $ show P25.answer
@@ -89,5 +91,5 @@ runSolution 35 = return $ show P35.answer
 runSolution 36 = return $ show P36.answer
 runSolution 37 = return $ show P37.answer
 runSolution 38 = return $ show P38.answer
-runSolution 67 = P67.answer >>= (return . show)
+runSolution 67 = liftM show P67.answer
 runSolution _ = undefined

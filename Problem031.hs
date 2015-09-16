@@ -15,7 +15,7 @@ count target coins = cs target maxCoin
     cs t c
       | t==0 || c==1 = 1
       | t < c        = counts ! (t, nextCoin)
-      | otherwise    = (counts ! (t, nextCoin)) + (counts ! ((t - c), c))
+      | otherwise    = (counts ! (t, nextCoin)) + (counts ! (t - c, c))
       where nextCoin = maximum $ filter (<c) coins
 
 

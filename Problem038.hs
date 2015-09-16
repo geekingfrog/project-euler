@@ -16,9 +16,9 @@ concatMultiple n = scanl1 concatNumber $ iterate (+n) n
 concatNumber :: Integral a => a -> a -> a
 concatNumber a b = a*power + b
   where
-    power = 10 ^ (length $ decompose b)
+    power = 10 ^ length (decompose b)
 
-isPandigital n = [1..9] == (sort $ decompose n)
+isPandigital n = [1 .. 9] == sort (decompose n)
 
-noDupDigit n = length dn == (length $ nub dn)
+noDupDigit n = length dn == length (nub dn)
   where dn = decompose n

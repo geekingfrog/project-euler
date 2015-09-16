@@ -4,7 +4,7 @@ import Data.List (nub)
 import NumUtil (decompose, recompose, toBase)
 
 answer :: Int
-answer = sum $ map recompose $ filter (isPalindrome . (toBase 2) . recompose) palindroms
+answer = sum $ map recompose $ filter (isPalindrome . toBase 2 . recompose) palindroms
   where
     rawpalindroms = concat [[makePalindrome i False, makePalindrome i True] | i <- [1..999]]
     palindroms = nub $ filter ((>0) . length) $ map filterZeros rawpalindroms
@@ -13,7 +13,7 @@ answer = sum $ map recompose $ filter (isPalindrome . (toBase 2) . recompose) pa
     filterZeros xs = xs
 
 isPalindrome :: (Eq a) => [a] -> Bool
-isPalindrome x = (reverse x) == x
+isPalindrome x = reverse x == x
 
 makePalindrome :: Int -> Bool -> [Int]
 makePalindrome x shifted = go shifted decomposed decomposed

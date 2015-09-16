@@ -22,7 +22,7 @@ fibs :: Num a => [a]
 fibs = 1 : 1 : zipWith (+) fibs (tail fibs)
 
 toBase :: Integral a => a -> a -> [a]
-toBase base n = unfoldr d n
+toBase base = unfoldr d
   where
     d 0 = Nothing
     d x = Just (x `mod` base, x `div` base)

@@ -4,7 +4,7 @@ import Primes (primes, isPrime)
 import NumUtil (decompose, recompose)
 
 answer :: Int
-answer = length . (filter isCircularPrime) $ (takeWhile (<1000000) primes)
+answer = length . filter isCircularPrime $ takeWhile (<1000000) primes
 
 isCircularPrime :: Int -> Bool
 isCircularPrime p = all (isPrime . recompose) (tail . circularPermutation $ decompose p)

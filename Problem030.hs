@@ -9,6 +9,6 @@ answer = sum $ filter (\x -> x == sumOfPower 5 x) [2..999999]
 
 -- power n p = n^p
 power :: Int -> Int -> Int
-power n p = floor ((fromIntegral n)**(fromIntegral p))
+power n p = floor (fromIntegral n ** fromIntegral p)
 
-sumOfPower p = sum . map (flip power $ p) . decompose
+sumOfPower p = sum . map (`power` p) . decompose

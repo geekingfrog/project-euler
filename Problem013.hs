@@ -1,7 +1,7 @@
 module Problem013 (answer) where
 
 answer :: Integer
-answer = read . (take 10) . show . sum $ numbers
+answer = read . take 10 . show . sum $ numbers
 
 numbers :: [Integer]
 numbers = [37107287533902102798797998220837590246510135740250,

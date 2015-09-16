@@ -12,7 +12,8 @@ answer = do
   let parsed = parse nameFile "namefile" rawNames
   case parsed of
     Left _ -> undefined -- look at that error handling \o/
-    Right names -> return . sum $ map prod2 (zip [1..] (map scoreName (sort names)))
+    Right names -> return . sum $ zipWith (curry prod2) [1..] (map scoreName (sort names))
+    -- Right names -> return . sum $ map prod2 (zip [1..] (map scoreName (sort names)))
 
 prod2 :: (Int, Int) -> Int
 prod2 (a, b) = a*b

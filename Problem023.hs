@@ -14,9 +14,9 @@ isAbundantSum n = do
   let isA = isAbundant n
   let isSum = S.foldr (\a prev -> prev || S.member (n-a) s) False s
   if isA
-    then (put $ S.insert n s) >> return 0
+    then put (S.insert n s) >> return 0
     else return 0
   if isSum then return 0 else return n
 
 isAbundant :: Int -> Bool
-isAbundant n = (sum $ properDivisors n) > n
+isAbundant n = sum (properDivisors n) > n

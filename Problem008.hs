@@ -3,7 +3,7 @@ module Problem008 (answer) where
 import Data.Char (ord)
 
 answer :: Int
-answer = maximum $ map (foldl (*) 1) (consecutiveDigits 13)
+answer = maximum $ map product (consecutiveDigits 13)
 
 consecutiveDigits :: Int -> [[Int]]
 consecutiveDigits n = [take n $ drop i bigdigit | i <- [0..(length bigdigit - n)]]

@@ -1,5 +1,3 @@
-{-# LANGUAGE BangPatterns #-}
-
 module Problem017 (answer) where
 
 -- Using a state monad here is completely overengineered

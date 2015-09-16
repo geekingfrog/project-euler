@@ -7,7 +7,7 @@ import Data.Time.Calendar (fromGregorian)
 import Data.Time.Calendar.WeekDate (toWeekDate)
 
 answer :: Int
-answer = length $ [1 | y <- [1901..2000], m <- [1..12], isSunday y m 1]
+answer = length [1 | y <- [1901..2000], m <- [1..12], isSunday y m 1]
 
 isSunday :: Integer -> Int -> Int -> Bool
 isSunday year month day = 7 == dayOfWeek

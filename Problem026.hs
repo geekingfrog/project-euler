@@ -1,7 +1,7 @@
 module Problem026 (answer) where
 
 import Data.List (unfoldr, maximumBy)
-import Data.Maybe (catMaybes)
+import Data.Maybe (mapMaybe)
 import Data.Function (on)
 
 answer :: Int
@@ -19,8 +19,9 @@ cycleLength n = case cycles of
   [] -> 0
   _  -> 1 + maximum cycles
   where
-    rs = concatTail . (take n) $ remainders n
-    cycles = catMaybes $ map (\(x, xs) -> nextOcc x xs) rs
+    rs = concatTail . take n $ remainders n
+    cycles = mapMaybe (uncurry nextOcc) rs
+    -- cycles = catMaybes $ map (\(x, xs) -> nextOcc x xs) rs
 
 nextOcc :: (Eq a) => a -> [a] -> Maybe Int
 nextOcc = go 0

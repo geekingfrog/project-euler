@@ -6,16 +6,16 @@ import Data.PSQueue as PQ
 primes = sieve [2..]
 
 factorize :: Int -> [Int]
-factorize n = factorize' primes n
+factorize = factorize' primes
   where
-    factorize' primes n = unfoldr (unfolder primes) n
+    factorize' primes = unfoldr (unfolder primes)
     unfolder ps x = case firstPrimeDivisor ps x of
           Nothing -> Nothing
           Just d -> Just (d, x `div` d)
 
 -- list of all factors for a given number (not sorted)
 factors :: Int -> [Int]
-factors = nub . (map product) . subsequences . factorize
+factors = nub . map product . subsequences . factorize
 
 properDivisors :: Int -> [Int]
 properDivisors = init . factors
@@ -42,7 +42,7 @@ safeHead (x:_) = Just x
 type IteratorTable = PQ.PSQ [Int] Int
 
 insertComposite :: Int -> [Int] -> IteratorTable -> IteratorTable
-insertComposite n ns table = PQ.insert ns n table
+insertComposite n ns = PQ.insert ns n
 
 minKey table = case PQ.findMin table of
   Nothing -> undefined
@@ -61,7 +61,7 @@ sieve [] = []
 sieve (x:xs) = x : sieve' xs (insertPrime x xs PQ.empty)
   where
     insertPrime :: Int -> [Int] -> IteratorTable -> IteratorTable
-    insertPrime p xs table = insertComposite (p*p) (map (*p) xs) table
+    insertPrime p xs = insertComposite (p*p) (map (*p) xs)
     sieve' [] _ = []
     sieve' (x:xs) table
       | nextComposite <= x = sieve' xs (adjust table)
