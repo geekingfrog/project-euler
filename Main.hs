@@ -42,6 +42,7 @@ import Problem037 as P37
 import Problem038 as P38
 import Problem039 as P39
 import Problem040 as P40
+import Problem041 as P41
 import Problem067 as P67
 
 main :: IO ()
@@ -95,5 +96,6 @@ runSolution 37 = return $ show P37.answer
 runSolution 38 = return $ show P38.answer
 runSolution 39 = return $ show P39.answer
 runSolution 40 = return $ show P40.answer
+runSolution 41 = return $ show P41.answer
 runSolution 67 = liftM show P67.answer
 runSolution _ = undefined
