@@ -2,7 +2,8 @@ module NumUtil (
   decompose,
   recompose,
   fibs,
-  toBase
+  toBase,
+  genPanDigitNumbers
 ) where
 
 import Data.List (unfoldr)
@@ -26,3 +27,16 @@ toBase base = unfoldr d
   where
     d 0 = Nothing
     d x = Just (x `mod` base, x `div` base)
+
+
+-- generate n pandigital numbers (start to end)
+genPanDigitNumbers :: Int -> Int -> [Int]
+genPanDigitNumbers start end = map recompose (go [start..end] [[]])
+  where
+    go :: [Int] -> [[Int]] -> [[Int]]
+    go [] acc = acc
+    go digits acc = concat [go ds (map (\l -> d:l) acc) | (d, ds) <- split digits]
+
+split :: [a] -> [(a, [a])]
+split [] = []
+split (x:xs) = (x, xs) : [(y, x:ys) | (y, ys) <- split xs]
